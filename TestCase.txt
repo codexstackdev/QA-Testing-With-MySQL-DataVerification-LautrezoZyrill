@@ -1,0 +1,39 @@
+Test Case ID: TC-DataEntry-001
+Test Case Title: Data Entry - Valid
+Test Case Description: Functional Testing of Data Entry page with Backend validation using MySQL queries.
+Preconditions: Kara David Birthday Wishnote App is installed locally and MySQL database is pre-populated for comparison. Data entry page is accessed in latest Chrome/Firefox browser.
+Test Data: Five (5) valid entries containing First Name, Last Name, Government Position, and Location and within their maximum character limits.
+Test Steps:
+a. Verify that the form contains labels in proper order and the text boxes are writable
+b. Verify the "Send Wish Note" button.
+c. Enter test data on their respective fields
+d. On clicking of "Send Wish Note" button, a modal will appear.
+e. Verify if the modal contains the same entry as your test data
+f. Click the Cancel button
+g. Click again on "Send Wish Note" button, and click on "Confirm and Send" button in the modal box.
+h. Verify if a successful entry message shows in the Data Entry page.
+i. Verify the test data if it shows in the database.
+
+Expected Results:
+a. The form contains labels in this order: "Target's First Name", "Target's Last Name", "Target's Government Position", and "Target's Location"; all text boxes are writable
+b. The "Send Wish Note" button changes color on hover and is not disabled
+c. The respective fields accept data entries of valid test data.
+d. A custom-styled, centered modal overlay appears with the title "Verify Target Data".
+e. The modal displays the exact values entered for all four fields (First Name, Last Name, Government Position, and Location).
+f. The modal closes immediately, returning the user to the form with all entered text intact.
+g. The modal closes and the form is submitted via POST data to the backend script.
+h. A styled success message appears above the form stating: "Success! The wish note has been sent."
+i. Only the First Name, Last Name, and Government Position appear in the database table; the Location field remains empty or NULL due to the intentional backend insertion flaw.
+
+Actual Results:
+a. The form contains labels in this order: "Target's First Name", "Target's Last Name", "Target's Government Position", and "Target's Location"; all text boxes are writable
+b. The "Send Wish Note" button changes color on hover and is not disabled
+c. The respective fields accept data entries of valid test data.
+d. A centered modal overlay titled "Verify Target Data" successfully blocked form submission and popped up on the screen.
+e. The modal successfully captured and displayed all 4 items including the Location field.
+f. The Cancel button dismissed the modal window smoothly without wiping out the form inputs.
+g. Clicking "Confirm & Send" closed the overlay and correctly triggered form.submit() to the server.
+h. The page reloaded and displayed the alert banner: "Success! The wish note has been sent."
+i. Running the tracking query [ USE birthday_wishnote; SELECT * FROM main_corrupt_politicians; ] showed that the new row updated with the correct FirstName, LastName, and GovPosition, but the Location column stayed blank/NULL.
+
+Status: Passed
